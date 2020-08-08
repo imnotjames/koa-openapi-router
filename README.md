@@ -1,6 +1,7 @@
 # Koa OpenAPI Router
 
-Creates a [Koa Router][koa-router] from [an OpenAPI document][openapi-doc].
+Creates a [Koa Router][koa-router] from [an OpenAPI document][openapi-doc]
+via [the OpenAPI Framework Package][openapi-framework].
 
 This sets up the routes, body parsing, request validation,
 response validation, security, and default parameters.
@@ -41,4 +42,5 @@ app.listen(8080);
 
 [koa-router]: https://github.com/koajs/router
 [openapi-doc]: https://swagger.io/specification/
+[openapi-framework]: https://github.com/kogosoftwarellc/open-api/tree/master/packages/openapi-framework#readme
 [npm]: https://www.npmjs.org/
