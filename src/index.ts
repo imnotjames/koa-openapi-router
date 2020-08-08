@@ -136,8 +136,6 @@ function createResponseValidatorMiddleware ({ allowsFeatures, features: { respon
       );
 
       if (response) {
-        process.stderr.write(response.message + '\n');
-
         ctx.response.status = 500;
         ctx.response.body = '';
       }
