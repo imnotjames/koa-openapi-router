@@ -16,6 +16,37 @@ export interface KoaOpenAPIInitializeArgs extends OpenAPIFrameworkArgs {
   consumers?: { [mimeType: string]: Middleware };
 }
 
+interface RouterAllowedMethodsOptions {
+  /**
+   * throw error instead of setting status and header
+   */
+  throw?: boolean;
+  /**
+   * throw the returned value in place of the default NotImplemented error
+   */
+  notImplemented?: () => any;
+  /**
+   * throw the returned value in place of the default MethodNotAllowed error
+   */
+  methodNotAllowed?: () => any;
+}
+
+export interface Router {
+
+  /**
+   * Returns router middleware which dispatches a route matching the request.
+   */
+  middleware(): Middleware;
+
+  /**
+   * Returns separate middleware for responding to `OPTIONS` requests with
+   * an `Allow` header containing the allowed methods, as well as responding
+   * with `405 Method Not Allowed` and `501 Not Implemented` as appropriate.
+   */
+  allowedMethods(options?: RouterAllowedMethodsOptions): Middleware;
+
+}
+
 // Hack because the exported typescript is broken..
 function createOpenAPIFramework (frameworkArgs: OpenAPIFrameworkArgs): OpenAPIFramework {
   // @ts-ignore
@@ -24,7 +55,7 @@ function createOpenAPIFramework (frameworkArgs: OpenAPIFrameworkArgs): OpenAPIFr
   return new Framework(frameworkArgs) as OpenAPIFramework;
 }
 
-export function getRouter (args: KoaOpenAPIInitializeArgs): KoaRouter {
+export function getRouter (args: KoaOpenAPIInitializeArgs): Router {
   const {
     consumers = {}
   } = args;

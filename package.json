@@ -51,6 +51,9 @@
     "ts-node": "^8.10.2",
     "typescript": "^3.9.7"
   },
+  "peerDependencies": {
+    "@types/koa": "^2.11.3"
+  },
   "author": "James Ward <james@notjam.es>",
   "license": "MIT",
   "repository": {
